@@ -1,0 +1,15 @@
+# 생성: idol-magazine/uploader/linkinbio.py — 직접 수정하지 말 것
+name: upload-watchdog
+on:
+  schedule:
+    - cron: "17 1,13 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 마지막 업로드 확인
+        run: python3 .github/scripts/check_status.py status.json
